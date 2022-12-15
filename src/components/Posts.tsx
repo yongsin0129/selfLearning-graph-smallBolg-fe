@@ -1,6 +1,6 @@
 import React from 'react'
 import { useQuery, useMutation, gql } from '@apollo/client'
-import { Link  } from "react-router-dom";
+import { Link } from 'react-router-dom'
 
 const GET_POSTS_FOR_AUTHOR = gql`
   query PostsForAuthor {
@@ -20,7 +20,7 @@ const Posts = () => {
     ({ id, title }: { id: string; title: string }) => {
       return (
         <li key={id} className='collection-item'>
-          <Link  to={`/posts/${id}`}>{title}</Link >
+          <Link to={`/posts/${id}`}>{title}</Link>
         </li>
       )
     }
@@ -29,6 +29,9 @@ const Posts = () => {
   return (
     <div>
       <ul className='collection'>{postList}</ul>
+      <Link to='/posts/add' className='btn-floating btn-large red right'>
+        <i className='material-icons'>add</i>
+      </Link>
     </div>
   )
 }

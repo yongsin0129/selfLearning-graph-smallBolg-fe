@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Posts from './components/Posts'
 import Users from './components/Users'
 import SinglePostPage from './components/SinglePostPage'
+import SinglePostAdd from "./components/SinglePostAdd";
 
 const client = new ApolloClient({
   uri: import.meta.env.VITE_graphql_endPoint,
@@ -19,6 +20,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <Routes>
         <Route path='/' element={<App />} />
         <Route path='/posts/:id' element={<SinglePostPage />} />
+        <Route path='/posts/add' element={<SinglePostAdd />} />
         {/* <Route path='/users' element={<Users />} /> */}
         {/* <Route path='/posts' element={<Posts />} /> */}
       </Routes>
