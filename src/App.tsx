@@ -1,6 +1,6 @@
 import './css/App.css'
 import Posts from './components/Posts'
-import Users from "./components/Users";
+import Users from './components/Users'
 
 function App () {
   return (

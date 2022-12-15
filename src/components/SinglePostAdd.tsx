@@ -11,12 +11,24 @@ const ADD_POST = gql`
     }
   }
 `
+const GET_POSTS_FOR_AUTHOR = gql`
+  query PostsForAuthor {
+    posts {
+      id
+      title
+      body
+    }
+  }
+`
 
 const SinglePostAdd = () => {
   let AddPostInput = { title: '', body: '' }
   const navigate = useNavigate()
-
-  const [ADD_POST_Function, { data, loading, error }] = useMutation(ADD_POST)
+  const [ADD_POST_Function, { data, loading, error }] = useMutation(ADD_POST, {
+    // 每次執行 mutation ，都會等待 重新run 指定的 Query
+    refetchQueries: [{ query: GET_POSTS_FOR_AUTHOR }],
+    awaitRefetchQueries: true
+  })
   if (loading) return <p>Submitting...</p>
   if (error) return <p>`Submission error! {error.message}`</p>
 
