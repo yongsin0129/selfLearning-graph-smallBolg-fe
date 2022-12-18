@@ -26,7 +26,6 @@ const SinglePostAdd = () => {
       <form
         onSubmit={e => {
           e.preventDefault()
-          console.log(AddPostInput)
           ADD_POST_Function({
             variables: {
               input: AddPostInput
