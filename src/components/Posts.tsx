@@ -1,18 +1,10 @@
 import React from 'react'
-import { useQuery, useMutation, gql } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { Link } from 'react-router-dom'
+import * as gqlHelper from '../gql'
 
-const GET_POSTS_FOR_AUTHOR = gql`
-  query PostsForAuthor {
-    posts {
-      id
-      title
-      body
-    }
-  }
-`
 const Posts = () => {
-  const { loading, error, data } = useQuery(GET_POSTS_FOR_AUTHOR)
+  const { loading, error, data } = useQuery(gqlHelper.GET_All_POSTS)
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error </p>
 

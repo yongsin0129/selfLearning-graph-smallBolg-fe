@@ -1,18 +1,10 @@
 import React from 'react'
 // Import everything needed to use the `useQuery` hook
-import { useQuery, gql } from '@apollo/client'
-
-const GET_AllUsers = gql`
-  query GetAllUsers {
-    users {
-      id
-      name
-    }
-  }`
+import { useQuery } from '@apollo/client'
+import * as gqlHelper from '../gql'
 
 const Users = () => {
-  const { loading, error, data } = useQuery(GET_AllUsers)
-
+  const { loading, error, data } = useQuery(gqlHelper.GET_All_USERS)
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error : {error.message}</p>
 

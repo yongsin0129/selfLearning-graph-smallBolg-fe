@@ -1,51 +1,16 @@
-import React from 'react'
-import { useParams, Link, useNavigate } from 'react-router-dom'
-import { useQuery, gql, useMutation } from '@apollo/client'
+import { useParams, Link } from 'react-router-dom'
+import { useQuery, useMutation } from '@apollo/client'
+import * as gqlHelper from '../gql'
 
-const GET_SinglePost = gql`
-  query PostDetail($postId: ID!) {
-    post(id: $postId) {
-      id
-      title
-      body
-      author {
-        name
-      }
-      likeGivers {
-        id
-        name
-      }
-    }
-  }
-`
-
-const LIKE_POST = gql`
-  mutation ($postId: ID!) {
-    likePost(postId: $postId) {
-      id
-      title
-      body
-      author {
-        id
-        name
-      }
-      likeGivers {
-        id
-        name
-      }
-    }
-  }
-`
 const SinglePostPage = () => {
   let { id } = useParams()
-  const navigate = useNavigate()
   const countVotes = (array: []) => array.length
 
-  const [LIKE_POST_Mutation, mutationRes] = useMutation(LIKE_POST)
+  const [LIKE_POST_Mutation, mutationRes] = useMutation(gqlHelper.LIKE_POST)
   // if (mutationRes.loading) return <p>mutation Loading...</p> // 因為 mutation 點下去也會 call useQuery 的 hook 所以不能有太多 return ?
   // if (mutationRes.error) return <p>mutation Error </p>
 
-  const queryRes = useQuery(GET_SinglePost, {
+  const queryRes = useQuery(gqlHelper.GET_SinglePost, {
     variables: { postId: id }
   })
   if (queryRes.loading) return <p>query Loading...</p>
