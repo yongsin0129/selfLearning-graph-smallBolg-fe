@@ -22,3 +22,9 @@ body {
   min-width: 320px;
   min-height: 100vh;
 }
+
+.collection-item {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
