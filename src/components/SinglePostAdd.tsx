@@ -10,6 +10,7 @@ const link_style = {
 const SinglePostAdd = () => {
   let AddPostInput = { title: '', body: '' }
   const navigate = useNavigate()
+  const titleInputRef = useRef<HTMLInputElement>(null) // 先創立一個參考值
   const [ADD_POST_Function, { data, loading, error }] = useMutation(
     gqlHelper.ADD_POST,
     {
@@ -39,8 +40,11 @@ const SinglePostAdd = () => {
       >
         <label>Post Title:</label>
         <input
+          ref={titleInputRef} // react input 的 ref可以拿到現在的值
           onChange={e => {
             AddPostInput.title = e.target.value
+            console.log('AddPostInput.title : ' + AddPostInput.title)
+            console.log('titleInputRef : ' + titleInputRef.current?.value)
           }}
         />
 
